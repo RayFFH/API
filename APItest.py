@@ -21,6 +21,15 @@ def home():
 
 @app.route('/api/v1/input', methods=["POST"])
 def add_record():
+    if request.method == "POST":
+        firstname = request.form["first"]
+        lastname = request.form["last"]
+        grade = request.form["gr"]
+        conn = sqlite3.connect('grades.db')
+        c = conn.cursor()
+        c.execute("INSERT INTO grades VALUES (?,?,?)", (firstname, lastname, grade))
+        conn.commit()
+        conn.close()
     return render_template("gradeinput2.html")
 
 
