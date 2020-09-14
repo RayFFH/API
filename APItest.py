@@ -1,5 +1,5 @@
 import flask
-from flask import request, jsonify,render_template
+from flask import request, jsonify, render_template
 import sqlite3
 
 app = flask.Flask(__name__)
@@ -19,11 +19,11 @@ def home():
  <p>Records different students grades</p>'''
 
 
-@app.route('/api/v1/input', methods=["POST"])
+@app.route('/add_record', methods=["POST"])
 def add_record():
     if request.method == "POST":
-        firstname = request.form["first"]
-        lastname = request.form["last"]
+        firstname = request.form["fm"]
+        lastname = request.form["lm"]
         grade = request.form["gr"]
         conn = sqlite3.connect('grades.db')
         c = conn.cursor()
